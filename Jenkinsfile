@@ -1,20 +1,37 @@
 pipeline {
+
     agent any
-    stages {
-        stage('Build') {
-            steps {
-                echo "Here we will build our service! :)"
-            }
-        }
-        stage('Test') {
-            steps {
-                echo "Here we will unit test our service! :)"
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo "Here we will deploy our service! :)"
-            }
-        }
+
+    tools {
+
+        maven 'Maven 3.8.4'
+
+        jdk 'openjdk'
+
     }
+
+    stages {
+
+        stage('Build') {
+
+            steps {
+
+                sh "mvn compile"
+
+            }
+
+        }
+
+        stage('Test') {
+
+            steps {
+
+                sh "mvn test"
+
+            }
+
+        }
+
+    }
+
 }
